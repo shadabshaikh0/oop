@@ -59,6 +59,7 @@ int main()
 	cout<<"\n2.Display\n";
 	cout<<"\n3.Search by name\n";
 	cout<<"\n4.Search by telephone no\n";
+	cout<<"\n5.update\n";
 	cout<<"\nEnter your choice\n";
 	cin>>options;
 		switch(options)
