@@ -5,23 +5,29 @@
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
 //============================================================================
-
 #include <iostream>
+#include<exception>
 #include<string.h>
 using namespace std;
-
-class Userdefined_Exception
+class except:public exception
 {
-	int age, income,vehicle;
-	char city[10];
 public:
-	void getdata();
-	void display();
+	char* what()
+	{
+		return "\nInvalid \n";
+	}
 };
-void Userdefined_Exception:: getdata()
+class UserDefined
 {
-	cout<<"\nEnter User information\n";
-	cout<<"\nEnter age\n";
+	int age,income,vehicle;
+	string city;
+public:
+	void input();
+	void ouput();
+};
+void UserDefined::input()
+{
+	cout<<"\nEnter age \n";
 	cin>>age;
 	cout<<"\nEnter income\n";
 	cin>>income;
@@ -30,59 +36,58 @@ void Userdefined_Exception:: getdata()
 	cout<<"\nEnter city\n";
 	cin>>city;
 }
-void Userdefined_Exception::display()
+void UserDefined::ouput()
 {
 	try
 	{
 		if(!(age>=18 && age<=55))
 		{
-			throw 1;
+			throw except();
 		}
 	}
-	catch(int s)
+	catch(except &a)
 	{
-		cout<<"\nInvalid age\n";
+		cout<<a.what()<<" age\n";
 	}
-
 	try
 	{
-		if(!(income>=50000 && age<=1000000))
+		if(!(income>=50000 && income<=1000000))
 		{
-			throw 1;
+			throw except();
 		}
 	}
-	catch(int s)
+	catch(except &a)
 	{
-		cout<<"\nInvalid income\n";
-	}
-
-	try
-	{
-		if(!(city=="pune"||city=="Banglore"||city=="chennai"||city=="Mumbai"))
-		{
-			throw 1;
-		}
-	}
-	catch(int s)
-	{
-		cout<<"\nInvalid city\n";
+		cout<<a.what()<<" income\n";
 	}
 	try
 	{
 		if(!(vehicle==4))
 		{
-			throw 1;
+			throw except();
 		}
 	}
-	catch(int s)
+	catch(except &a)
 	{
-		cout<<"\nInvalid vehicle\n";
+		cout<<a.what()<<" vehicle\n";
 	}
+	try
+	{
+		if(!(city=="pune"||city=="mumbai"))
+		{
+			throw except();
+		}
+	}
+	catch(except &a)
+	{
+		cout<<a.what()<<" city\n";
+	}
+
 }
 int main()
 {
-	Userdefined_Exception u;
-	u.getdata();
-	u.display();
+	UserDefined u;
+	u.input();
+	u.ouput();
 	return 0;
 }
